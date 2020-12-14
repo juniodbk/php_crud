@@ -23,11 +23,9 @@
         </div>
     @endif
 
-    <form action="/products/edit" method="POST">
+    <form action="/products/{{$product->id}}" method="POST">
         @csrf
         @method('PUT')
-
-        <input type="hidden" name="id" value="{{$product->id}}" />
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">

@@ -23,7 +23,7 @@
         </div>
     @endif
 
-    <form action="" method="POST" >
+    <form action="/products" method="POST" >
         @csrf
 
         <div class="row">

@@ -34,21 +34,17 @@ class ProductController extends Controller
             ->with('success', 'Product created successfully.');
     }
 
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = ProductController::findById($id);
-
         return view('products.show', compact('product'));
     }
 
-    public function edit($id)
+    public function edit(Product $product)
     {
-        $product = ProductController::findById($id);
-
         return view('products.edit', compact('product'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Product $product)
     {
         $request->validate([
             'name' => 'required',
@@ -56,24 +52,17 @@ class ProductController extends Controller
             'price' => 'required'
         ]);
 
-        $product = ProductController::findById($request->id);
         $product->update($request->all());
 
         return redirect()->route('products.index')
             ->with('success', 'Product updated successfully');
     }
 
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        $product = ProductController::findById($id);
         $product->delete();
 
         return redirect()->route('products.index')
             ->with('success', 'Product deleted successfully');
-    }
-
-    private function findById($id) 
-    {
-        return Product::where('id', $id)->first();
     }
 }
